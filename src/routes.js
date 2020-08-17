@@ -2,16 +2,14 @@ const express = require ("express")
 
 const routes = express.Router()
 
-const User = require("./model/User")
+const UserController = require("./controllers/UserController")
 
-routes.post ('/user', async function (req,res) {
-    
-    
-    const {nome, cidade, idade} = req.body
-    const user = await User.create({nome,cidade,idade})
-    res.json({user})
- })
-
+routes.post ('/user',UserController.create)
+routes.put ('/user/:userId',UserController.update)
+routes.get ('/user/',UserController.list)
+routes.get ('/user/:userId',UserController.show)
+routes.delete ('/user/:userId',UserController.delete)
+/*
+routes.get ('/user/',UserController.get)
+*/
 module.exports = routes
-
-
